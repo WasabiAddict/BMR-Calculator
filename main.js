@@ -17,10 +17,10 @@ const calculateBMR = function(weight, height, age, gender){
 
 calculateBtn.addEventListener("click", function() {
 
-if(age.classList.contains("invalid") || height.classList.contains("invalid") || weight.classList.contains("invalid")) {
-    errorMessage.classList.add("active");
-    return;
-}
+    if(age.classList.contains("invalid") || height.classList.contains("invalid") || weight.classList.contains("invalid")) {
+        errorMessage.classList.add("active");
+        return;
+    }
     errorMessage.classList.remove("active");
 
     let genderValue = document.querySelector(".bmr-calculator form input[name='gender']:checked").value;
@@ -61,3 +61,4 @@ weight.addEventListener("input", function(e) {
         weight.classList.remove("invalid");
     };
 });
+

@@ -1,64 +1,40 @@
-const calories = document.querySelector(".bmr-calculator .result .calories");
-const calculateBtn = document.querySelector(".bmr-calculator .result .calculate-btn");
-const age = document.querySelector(".bmr-calculator form #age");
-const height = document.querySelector(".bmr-calculator form #height");
-const weight = document.querySelector(".bmr-calculator form #weight");
-const errorMessage = document.querySelector(".bmr-calculator .result .error-message");
+function calculateBMR() {
+    const age = parseInt(document.getElementById('age').value);
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const weightUnit = document.getElementById('weightUnit').value;
+    const heightUnit = document.getElementById('heightUnit').value;
 
-// BMR male = 10*weight + 6.25*height - 5*age +5
-// BMR female = 10*weight + 6.25*height -5*age -161
+    // Convert weight to kg if in lbs
+    const weightInKg = (weightUnit === 'lbs') ? weight * 0.453592 : weight;
 
-const calculateBMR = function(weight, height, age, gender){
-    if(gender == 'male') {
-        return 10 * weight + 6.25 * height - 5 * age + 5;
-    }
-    return 10 * weight + 6.25 * height -5 * age - 161;
-};
+    // Convert height to cm if in ft
+    const heightInCm = (heightUnit === 'ft') ? height * 30.48 : height;
 
-calculateBtn.addEventListener("click", function() {
+    // BMR calculation 
+    const bmr = calculateActualBMR(weightInKg, heightInCm, age, gender);
 
-    if(age.classList.contains("invalid") || height.classList.contains("invalid") || weight.classList.contains("invalid")) {
-        errorMessage.classList.add("active");
-        return;
-    }
-    errorMessage.classList.remove("active");
+    document.getElementById('result').innerHTML = `Your BMR is: ${bmr.toFixed(2)} calories per day`;
+}
 
-    let genderValue = document.querySelector(".bmr-calculator form input[name='gender']:checked").value;
+function calculateActualBMR(weightInKg, heightInCm, age, gender) {
+    
+    if (gender === 'male') {
+        return 10 * weightInKg + 6.25 * heightInCm - 5 * age + 5;
+    } else if (gender === 'female') {
+        return 10 * weightInKg + 6.25 * heightInCm - 5 * age - 161;
+    } 
+}
 
-    let BMR =  calculateBMR(weight.value, height.value, age.value, genderValue)
+function updateWeightPlaceholder() {
+    const weightUnit = document.getElementById('weightUnit').value;
+    const weightInput = document.getElementById('weight');
+    weightInput.placeholder = `Enter weight (${weightUnit})`;
+}
 
-    calories.innerHTML = BMR.toLocaleString("en-US");
-});
-
-//Input Validation
-
-age.addEventListener("input", function(e) {
-    let ageValue = e.target.value;
-
-    if(!ageValue || isNaN(ageValue) || ageValue < 10 || ageValue > 100) {
-        age.classList.add("invalid");
-    } else {
-        age.classList.remove("invalid");
-    };
-});
-
-height.addEventListener("input", function(e) {
-    let heightValue = e.target.value;
-
-    if(!heightValue || isNaN(heightValue) || heightValue < 0) {
-        height.classList.add("invalid");
-    } else {
-        height.classList.remove("invalid");
-    };
-});
-
-weight.addEventListener("input", function(e) {
-    let weightValue = e.target.value;
-
-    if(!weightValue || isNaN(weightValue) || weightValue < 0) {
-        weight.classList.add("invalid");
-    } else {
-        weight.classList.remove("invalid");
-    };
-});
-
+function updateHeightPlaceholder() {
+    const heightUnit = document.getElementById('heightUnit').value;
+    const heightInput = document.getElementById('height');
+    heightInput.placeholder = `Enter height (${heightUnit})`;
+}

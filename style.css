@@ -1,4 +1,21 @@
 label {
    display: block;
    margin-top: 10px;
+   margin-bottom: 10px;
+}
+
+button {
+   padding: 5px 20px;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+input[type="number"],
+input[type="radio"],
+select,
+button {
+    cursor: pointer;
 }

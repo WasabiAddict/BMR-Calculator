@@ -6,8 +6,8 @@ label {
 
 button {
    padding: 5px 20px;
-   background-color: #4CAF50;
-   color: white;
+   background-color: rgb(125, 236, 129);
+   color: black;
    border: none;
    border-radius: 4px;
    cursor: pointer;

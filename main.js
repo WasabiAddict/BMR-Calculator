@@ -2,15 +2,24 @@ function calculateBMR() {
     const age = parseInt(document.getElementById('age').value);
     const gender = document.querySelector('input[name="gender"]:checked').value;
     const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
     const weightUnit = document.getElementById('weightUnit').value;
+
+    let heightInCm;
     const heightUnit = document.getElementById('heightUnit').value;
+
+    if (heightUnit === 'cm') {
+        heightInCm = parseFloat(document.getElementById('height').value);
+    } else if (heightUnit === 'ft') {
+        const heightFt = parseFloat(document.getElementById('heightFt').value);
+        const heightIn = parseFloat(document.getElementById('heightIn').value);
+        heightInCm = heightFt * 30.48 + heightIn * 2.54;
+    } else {
+        console.error('Invalid height unit'); // Optional: Provide an error message for debugging
+        return; // Exit the function if the height unit is invalid
+    }
 
     // Convert weight to kg if in lbs
     const weightInKg = (weightUnit === 'lbs') ? weight * 0.453592 : weight;
-
-    // Convert height to cm if in ft
-    const heightInCm = (heightUnit === 'ft') ? height * 30.48 : height;
 
     // BMR calculation 
     const bmr = calculateActualBMR(weightInKg, heightInCm, age, gender);
@@ -33,8 +42,31 @@ function updateWeightPlaceholder() {
     weightInput.placeholder = `Enter weight (${weightUnit})`;
 }
 
+function updateHeightInputs() {
+    const heightUnit = document.getElementById('heightUnit').value;
+    const heightInputs = document.getElementById('heightInputs');
+
+    // Check the selected unit and update the HTML structure
+    if (heightUnit === 'ft') {
+        heightInputs.innerHTML = `
+            <input type="number" id="heightFt" placeholder="ft">
+            <input type="number" id="heightIn" placeholder="in">
+        `;
+    } else {
+        heightInputs.innerHTML = `<input type="number" id="height" placeholder="Enter height">`;
+    }
+}
+
 function updateHeightPlaceholder() {
     const heightUnit = document.getElementById('heightUnit').value;
-    const heightInput = document.getElementById('height');
-    heightInput.placeholder = `Enter height (${heightUnit})`;
+    const heightInputs = document.getElementById('heightInputs');
+
+    if (heightUnit === 'ft') {
+        heightInputs.innerHTML = `
+            <input type="number" id="heightFt" placeholder="ft">
+            <input type="number" id="heightIn" placeholder="in">
+        `;
+    } else {
+        heightInputs.innerHTML = `<input type="number" id="height" placeholder="Enter height">`;
+    }
 }

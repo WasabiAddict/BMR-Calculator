@@ -3,23 +3,42 @@ function calculateBMR() {
     const gender = document.querySelector('input[name="gender"]:checked').value;
     const weight = parseFloat(document.getElementById('weight').value);
     const weightUnit = document.getElementById('weightUnit').value;
+    const heightUnit = document.getElementById('heightUnit').value;
 
     let heightInCm;
-    const heightUnit = document.getElementById('heightUnit').value;
+    let heightFt, heightIn;
 
     if (heightUnit === 'cm') {
         heightInCm = parseFloat(document.getElementById('height').value);
     } else if (heightUnit === 'ft') {
-        const heightFt = parseFloat(document.getElementById('heightFt').value);
-        const heightIn = parseFloat(document.getElementById('heightIn').value);
-        heightInCm = heightFt * 30.48 + heightIn * 2.54;
+         heightFt = parseFloat(document.getElementById('heightFt').value);
+         heightIn = parseFloat(document.getElementById('heightIn').value);
+         heightInCm = heightFt * 30.48 + heightIn * 2.54;
     } else {
         console.error('Invalid height unit'); // Optional: Provide an error message for debugging
         return; // Exit the function if the height unit is invalid
     }
 
     // Convert weight to kg if in lbs
-    const weightInKg = (weightUnit === 'lbs') ? weight * 0.453592 : weight;
+    let weightInKg;
+    if (weightUnit === 'lbs') {
+    weightInKg = weight * 0.453592;
+    } else {
+    weightInKg = weight;
+    }
+
+    // Validate inputs
+    if (!age || !getSelectedGender() || isNaN(weightInKg) || isNaN(heightInCm)) {
+        alert('Please enter valid values for all fields.');
+        return;
+    }
+
+    if (heightUnit === 'ft') {
+        if (isNaN(heightFt) || isNaN(heightIn)) {
+            alert('Please enter valid values for height in feet and inches.');
+            return;
+        }
+    }
 
     // BMR calculation 
     const bmr = calculateActualBMR(weightInKg, heightInCm, age, gender);
@@ -69,4 +88,9 @@ function updateHeightPlaceholder() {
     } else {
         heightInputs.innerHTML = `<input type="number" id="height" placeholder="Enter height">`;
     }
+}
+
+function getSelectedGender() {
+    const selectedGender = document.querySelector('input[name="gender"]:checked');
+    return selectedGender ? selectedGender.value : null;
 }

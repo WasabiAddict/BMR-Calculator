@@ -7,38 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>BMR Calculator</h1>
-    <label>
-        Age:
-        <input type="number" id="age" placeholder="Enter age">
-    </label>
-    <label>
-        Gender:
-        <input type="radio" name="gender" value="male" id="male"> Male
-        <input type="radio" name="gender" value="female" id="female"> Female
-    </label>
-    <label>
-        Weight:
-        <input type="number" id="weight" placeholder="Enter weight">
-        <select id="weightUnit" onchange="updateWeightPlaceholder()">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-        </select>
-    </label>
-    <label>
-        Height:
-        <div id="heightInputs">
-            <input type="number" id="heightFt" placeholder="ft">
-            <input type="number" id="heightIn" placeholder="in">
-        </div>
-        <select id="heightUnit" onchange="updateHeightInputs()">
-            <option value="ft">ft</option>
-            <option value="cm">cm</option>
-        </select>
-    </label>
-    <button onclick="calculateBMR()">Calculate BMR</button>
-    <p id="result"></p>
+    <div class = "bmr-calculator">
+        <h1>BMR Calculator</h1>
+        <div class="inputs">
+            <form id="form">
+                <h3>Age</h3> 
+                <input type="text" id="age" value="" placeholder="enter age here"/>  
 
+                <div class="gender">
+                    <h3>Gender</h3>
+                    <input type="radio" id ="male" value = "male" name="gender"/>
+                    <label for="male">Male</label>
+                    <input type="radio" id ="female" value= "female" name="gender"/>
+                    <label for="female">Female</label>
+                </div>
+                <div class="height">
+                    <h3>Height</h3>
+                    <input type="text" id="height" value="" placeholder="enter height here"/>
+                    <div class="unit">cm</div>
+                </div>
+                <div class="weight">
+                    <h3>Weight</h3>
+                    <input type="text" id="weight" value="" placeholder="enter weight here"/>
+                    <div class="unit">kg</div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="result">
+            <button id ='btn' class="calculate-btn">Calculate</button>
+            <div class="result-message">
+               <span id="calories" class="calories">0</span> 
+               Calories per Day
+            </div>
+            <div id = "error" class="error-message">
+                <span></span>
+            </div>      
+        </div>  
+    </div>
+    
     <script src="main.js"></script>
 </body>
 </html>

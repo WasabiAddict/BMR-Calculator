@@ -13,7 +13,7 @@
             <form id="form">
                 <h3>Age</h3> 
                 <input type="text" id="age" value="" placeholder="enter age here"/>  
-
+                
                 <div class="gender">
                     <h3>Gender</h3>
                     <input type="radio" id ="male" value = "male" name="gender"/>
@@ -37,14 +37,21 @@
         <div class="result">
             <button id ='btn' class="calculate-btn">Calculate</button>
             <div class="result-message">
-               <span id="calories" class="calories">0</span> 
-               Calories per Day
+                <span id="calories" class="calories">0</span> 
+                Calories per Day
             </div>
             <div id = "error" class="error-message">
                 <span></span>
             </div>      
         </div>  
+        <div class="measurement system">
+            <input type="radio" id="imperial" value="imperial" name="measurement"/>
+            <label for="imperial">Imperial</label>
+            <input type="radio" id="metric" value="metric" name="measurement"/>
+            <label for="metric">Metric</label>
+        </div>
     </div>
+    
     
     <script src="main.js"></script>
 </body>

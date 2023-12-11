@@ -19,19 +19,32 @@ const calculateBMR = function(weight, height, age, gender){
 
 //calculate button click function
 calculateBtn.addEventListener('click', function() {
-    let genderValue = document.querySelector(".bmr-calculator form input[name='gender']:checked").value;
+    let genderValue = document.querySelector(".bmr-calculator form input[name='gender']:checked")?.value;
+            if(!validation(genderValue)) {
+                return;
+            }
     
     let BMR =  calculateBMR(weight.value, height.value, age.value, genderValue);
 
     calories.innerHTML = BMR.toLocaleString("en-us");
 
-    validation()
 });
 
-//input validation
 
-function validation() {
-    if(age.value == '' || height.value == '' || weight.value == '' || genderValue == false) {
-        alert('please enter all inputs correctly');
-    }
-}
+//input validation
+function validation(genderValue) {
+    if(age.value == '') { 
+        alert('please enter age correctly');
+        return false;
+    } else if (weight.value ==''){
+        alert('please enter weight correctly');
+        return false;
+    } else if (height.value == '') {
+        alert('please enter height correctly');
+        return false;
+    } else if (genderValue === undefined) {
+        alert('please check a gender');
+        return false;
+    };
+    return true;
+};

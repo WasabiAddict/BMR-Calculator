@@ -1,0 +1,36 @@
+.bmr-calculator {
+    max-width: 300px;
+    font-family: "Roboto", sans-serif;
+    padding: 8px 24px;
+}
+
+.bmr-calculator,
+.bmr-calculator * {
+    box-sizing: border-box
+}
+
+.bmr-calculator form .height,
+.bmr-calculator form .weight {
+    position: relative;
+}
+
+.bmr-calculator form .unit {
+    position: absolute;
+    right: 20px;
+    top: 45px;
+    color: #777;
+}
+
+.bmr-calculator form input[type='text'] {
+    width: 100%;
+    padding: 4px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid;
+}
+
+.bmr-calculator .result .calculate-btn {
+    padding: 8px 24px;
+    margin: 16px 0;
+    font-size: 18px;
+}

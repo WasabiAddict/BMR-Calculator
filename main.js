@@ -5,7 +5,9 @@ const weight = document.getElementById("weight");
 const calories = document.getElementById("calories");
 const form = document.getElementById("form");
 const error = document.getElementById("error");
+const units = document.getElementsByName("measurement")
 
+console.log(units);
 
 //BMR = 10 * weight + 6.25 * height - 5 * age + 5; male
 //BMR = 10 * weight + 6.25 * height - 5 * age -161; female
@@ -48,3 +50,11 @@ function validation(genderValue) {
     };
     return true;
 };
+
+
+//if imperial or metric is selected, show units respectively
+
+function filter() {
+    
+}
+

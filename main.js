@@ -39,8 +39,8 @@ calculateBtn.addEventListener('click', function() {
             if(!validation(genderValue)) {
                 return;
             }
-    
-    let BMR =  calculateBMR(weight.value, height.value, age.value, genderValue);
+    let measurementValue = document.querySelector("input[name='measurement']:checked")?.value;
+    let BMR =  calculateBMR(weight.value, height.value, age.value, genderValue, measurementValue);
 
     calories.innerHTML = BMR.toLocaleString("en-us");
 

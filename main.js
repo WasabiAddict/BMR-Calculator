@@ -42,7 +42,7 @@ calculateBtn.addEventListener('click', function() {
     let BMR = Math.max(calculateBMR(weight.value, height.value, age.value, genderValue, measurementValue),0);
             calories.innerHTML = Math.round(BMR).toLocaleString("en-us")
            if(BMR == 0) {
-            alert("Your values are incorrect");
+            alert("Please check your values again");
            }
 });
 

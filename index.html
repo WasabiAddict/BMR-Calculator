@@ -11,6 +11,13 @@
         <h1>BMR Calculator</h1>
         <div class="inputs">
             <form id="form">
+                <div class="measurement-system">
+                    <h4>Units</h4>
+                    <input type="radio" id="imperial" value="imperial" name="measurement"/>
+                    <label for="imperial">Imperial</label>
+                    <input type="radio" id="metric" value="metric" name="measurement" checked/>
+                    <label for="metric">Metric</label>
+                </div>
                 <h3>Age</h3> 
                 <input type="text" id="age" value="" placeholder="enter age here"/>  
                 
@@ -38,20 +45,10 @@
             <button id ='btn' class="calculate-btn">Calculate</button>
             <div class="result-message">
                 <span id="calories" class="calories">0</span> 
-                Calories per Day
-            </div>
-            <div id = "error" class="error-message">
-                <span></span>
-            </div>      
+                 Calories per Day
+            </div>  
         </div>  
         <br>
-        <div class="measurement-system">
-            <h4>Units</h4>
-            <input type="radio" id="imperial" value="imperial" name="measurement"/>
-            <label for="imperial">Imperial</label>
-            <input type="radio" id="metric" value="metric" name="measurement" checked/>
-            <label for="metric">Metric</label>
-        </div>
     </div>
     
     

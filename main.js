@@ -4,7 +4,6 @@ const height = document.getElementById("height");
 const weight = document.getElementById("weight");
 const calories = document.getElementById("calories");
 const form = document.getElementById("form");
-const error = document.getElementById("error");
 const units = document.querySelectorAll("input[name='measurement']");
 const cm = document.getElementById('cm');
 const kg = document.getElementById('kg');
@@ -26,7 +25,7 @@ const calculateBMR = function(weight, height, age, gender, measurement){
     } else if (gender == "male" && measurement == "imperial") {
         return 66.47 + 6.24 * weight + 12.7 * height - 6.75 * age;
     } else if (gender == "female" && measurement == "imperial") {
-        return 65.51 + 4.35 * weight  + 4.7 * height - 4.7 * age
+        return 65.51 + 4.35 * weight  + 4.7 * height - 4.7 * age;
     }
     
        
@@ -40,10 +39,11 @@ calculateBtn.addEventListener('click', function() {
                 return;
             }
     let measurementValue = document.querySelector("input[name='measurement']:checked")?.value;
-    let BMR =  calculateBMR(weight.value, height.value, age.value, genderValue, measurementValue);
-
-    calories.innerHTML = BMR.toLocaleString("en-us");
-
+    let BMR = Math.max(calculateBMR(weight.value, height.value, age.value, genderValue, measurementValue),0);
+            calories.innerHTML = Math.round(BMR).toLocaleString("en-us")
+           if(BMR == 0) {
+            alert("Your values are incorrect");
+           }
 });
 
 
@@ -67,7 +67,6 @@ function validation(genderValue) {
 
 
 //if imperial or metric is selected, show units respectively
-console.log(units)
 for(const unit of units) {
     unit.onchange = () => {
         if (units[0].checked == true ) {

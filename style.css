@@ -41,14 +41,15 @@
 }
 
 .calories {
-    color: rgb(2, 0, 128);
+    color: black;
     font-size: 40px;
     margin-right: 10px;
-    font-weight: bold
+    font-weight: bold;
+    vertical-align: middle;
 }
 
 body {
-    background-image: linear-gradient(to right,  #ec551b, #fef7f4);
+    background-image: linear-gradient(to right,  #ec551b, #fad5c6);
     display: flex;
     justify-content: center;
 }
